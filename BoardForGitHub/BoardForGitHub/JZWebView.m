@@ -8,7 +8,7 @@
 
 #import "JZWebView.h"
 
-@interface JZWebView ()
+@interface JZWebView ()<WKScriptMessageHandler>
 
 @property (strong) WKUserScript *jsInterfaceUserScript;
 
@@ -35,7 +35,11 @@
 
 - (id)initWithFrame:(NSRect)frameRect
 {
-    if ([super initWithFrame:frameRect])
+    WKWebViewConfiguration *conf = [[WKWebViewConfiguration alloc] init];
+    conf.userContentController = [[WKUserContentController alloc] init];
+    [conf.userContentController addScriptMessageHandler:self name:@"switchBoard"];
+    
+    if ([super initWithFrame:frameRect configuration:conf])
     {
         [self setWantsLayer:YES];
         self.layer.backgroundColor = [[NSColor clearColor] CGColor];
@@ -70,8 +74,15 @@
     // octocat logo move right (windows buttons here)
     [self evaluateJavaScript:@"$('.header-logo-invertocat').css('margin-left', '50px');" completionHandler:^(id whatIsThis,NSError *err){}];
     
+    // also give logo a onclick event
+    [self evaluateJavaScript:@"$('.header-logo-invertocat').removeAttr('href').unbind('click').click(function(){ window.webkit.messageHandlers.switchBoard.postMessage('switch'); });" completionHandler:^(id whatIsThis,NSError *err){}];
+    
     // remove "quit full screen" button
-    [self evaluateJavaScript:@"$('.d-table-cell.pr-4:eq(2)').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell.pr-4:eq(2)').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
+    // remove "settings" button
+    [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell:eq(2)').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
+    //move right a little bit
+    [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell:eq(1)').css('padding-right', '0px !important');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // ehhh header get fixed because it's now a titlebar
     [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('position', 'fixed').css('z-index', '99999').css('width', '100%');" completionHandler:^(id whatIsThis,NSError *err){}];
@@ -81,4 +92,22 @@
 
 }
 
+- (void)isGitHubLogined:(void (^ _Nullable)( NSNumber * _Nonnull  isOrNot))completionHandler;
+{
+    [self evaluateJavaScript:@"$(document.body).hasClass( 'logged-in' );" completionHandler:^(id whatIsThis,NSError *err)
+    {
+        NSNumber * isOrNot = (NSNumber *)whatIsThis;
+        
+        completionHandler (isOrNot);
+    }];
+}
+
+#pragma mark - WKScriptMessageHandler
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+    if ([message.name isEqualToString:@"switchBoard"])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_SWITCH_BOARD" object:nil];
+    }
+}
 @end

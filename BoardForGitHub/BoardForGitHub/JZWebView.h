@@ -12,4 +12,6 @@
 
 - (void)fixCSS;
 
+- (void)isGitHubLogined:(void (^ _Nullable)( NSNumber * _Nonnull  isOrNot))completionHandler;
+
 @end
