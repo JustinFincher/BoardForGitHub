@@ -25,4 +25,4 @@ Then click the octocat icon ( upper-left, next to window buttons ), a dialog wil
 
 # Release
 
-
+Go [Releases](https://github.com/JustinFincher/BoardForGitHub/releases)
