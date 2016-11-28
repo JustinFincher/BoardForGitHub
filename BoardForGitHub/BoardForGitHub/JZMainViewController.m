@@ -31,6 +31,13 @@
     self.webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     self.webView.navigationDelegate = self;
     
+    [self loadDefault];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SWITCH_BOARD:) name:@"JZ_SWITCH_BOARD" object:nil];
+}
+
+- (void)loadDefault
+{
     NSString *url = [[NSUserDefaults standardUserDefaults] objectForKey:@"JZ_LAUNCH_URL"];
     if (url)
     {
@@ -39,8 +46,6 @@
     {
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/JustinFincher/BoardForGitHub/projects/1?fullscreen=true"]]];
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SWITCH_BOARD:) name:@"JZ_SWITCH_BOARD" object:nil];
 }
 
 
@@ -61,6 +66,10 @@
         
         [self.webView isGitHubLogined:^(NSNumber * loginedInOrNot)
          {
+             if (![loginedInOrNot boolValue])
+             {
+                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/login"]]];
+             }
          }];
     }
 }
@@ -84,7 +93,15 @@
         {
             decisionHandler (WKNavigationActionPolicyAllow);
         }
-    }else
+    }else if ([urlString isEqualToString:@"https://github.com/login"] || [urlString isEqualToString:@"https://github.com/session"])
+    {
+        decisionHandler (WKNavigationActionPolicyAllow);
+    }else if ([urlString isEqualToString:@"https://github.com/"])
+    {
+        decisionHandler (WKNavigationActionPolicyAllow);
+        [self loadDefault];
+    }
+    else
     {
         decisionHandler (WKNavigationActionPolicyCancel);
         [[NSWorkspace sharedWorkspace] openURL:navigationAction.request.URL];

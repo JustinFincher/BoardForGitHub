@@ -96,9 +96,15 @@
 {
     [self evaluateJavaScript:@"$(document.body).hasClass( 'logged-in' );" completionHandler:^(id whatIsThis,NSError *err)
     {
-        NSNumber * isOrNot = (NSNumber *)whatIsThis;
-        
-        completionHandler (isOrNot);
+        if ([self.URL.absoluteString isEqualToString:@"https://github.com/login"])
+        {
+            completionHandler ([NSNumber numberWithBool:YES]);
+        }else
+        {
+            NSNumber * isOrNot = (NSNumber *)whatIsThis;
+            
+            completionHandler (isOrNot);
+        }
     }];
 }
 
