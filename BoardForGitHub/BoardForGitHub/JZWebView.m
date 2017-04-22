@@ -66,8 +66,16 @@
 
 - (void)fixCSS
 {
+    // body remove min-width
+    [self evaluateJavaScript:@"$(document.body).removeAttr('min-width');" completionHandler:^(id whatIsThis,NSError *err){}];
+    
+    // dont display breadcrumb
+    [self evaluateJavaScript:@"$('.project-breadcrumb.text-normal.v-align-bottom').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
+    
     // columns move down 50px
     [self evaluateJavaScript:@"$('.project-columns').css('background-color', 'rgba(0, 0, 0, 0)').css('margin-top', '50px');" completionHandler:^(id whatIsThis,NSError *err){}];
+    // menus move down 50px
+    [self evaluateJavaScript:@"$('.project-pane').css('margin-top', '50px');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     [self evaluateJavaScript:@"$(document.body).css('background-color', 'transparent');" completionHandler:^(id whatIsThis,NSError *err){}];
     

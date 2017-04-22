@@ -24,8 +24,8 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"NSApplicationCrashOnExceptions": @YES }];
     [Fabric with:@[[Crashlytics class]]];
     
-    JZMainWindow *window = [[NSApplication sharedApplication] mainWindow];
-    JZMainViewController *controller = window.contentViewController;
+    JZMainWindow *window = (JZMainWindow *)[[NSApplication sharedApplication] mainWindow];
+    JZMainViewController *controller = (JZMainViewController *)window.contentViewController;
     [NSApp setServicesProvider:controller];
 }
 
@@ -52,6 +52,8 @@
                          }
                      }];
 }
-
-
+- (BOOL)application:(NSApplication *)theApplication openFile:(nonnull NSString *)filename
+{
+    return YES;
+}
 @end

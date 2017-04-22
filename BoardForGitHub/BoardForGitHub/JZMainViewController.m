@@ -124,6 +124,7 @@
     NSInteger button = [alert runModal];
     if (button == NSAlertFirstButtonReturn)
     {
+        [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL URLWithString:[input stringValue]]];
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[input stringValue]]]];
     } else if (button == NSAlertSecondButtonReturn)
     {
