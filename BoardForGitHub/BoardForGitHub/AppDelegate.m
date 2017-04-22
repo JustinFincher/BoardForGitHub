@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "JZMainWindow.h"
+#import "JZMainViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 @import WebKit;
 
 @interface AppDelegate ()
@@ -17,8 +21,18 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"NSApplicationCrashOnExceptions": @YES }];
+    [Fabric with:@[[Crashlytics class]]];
+    
+    JZMainWindow *window = (JZMainWindow *)[[NSApplication sharedApplication] mainWindow];
+    JZMainViewController *controller = (JZMainViewController *)window.contentViewController;
+    [NSApp setServicesProvider:controller];
 }
 
+- (IBAction)openButtonPressed:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_SWITCH_BOARD" object:nil];
+}
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
@@ -38,6 +52,8 @@
                          }
                      }];
 }
-
-
+- (BOOL)application:(NSApplication *)theApplication openFile:(nonnull NSString *)filename
+{
+    return YES;
+}
 @end

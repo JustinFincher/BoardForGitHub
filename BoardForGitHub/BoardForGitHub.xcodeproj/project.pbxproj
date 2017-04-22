@@ -17,9 +17,24 @@
 		0D98E2871DEC8CC400F130E2 /* JZMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */; };
 		0D98E28A1DEC8CD900F130E2 /* JZMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */; };
 		0D98E28D1DEC8D5100F130E2 /* JZWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */; };
+		DC1E887A772D2DF2B4F688ED /* libPods-BoardForGitHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0DD101F11EA5F223003DB52C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0D3AB8411E8EC55D00629B9C /* BoardForGitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoardForGitHub.entitlements; sourceTree = "<group>"; };
 		0D5901B71DEC980800E6C230 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0D5901B91DEC983B00E6C230 /* JZWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZWebView.h; sourceTree = "<group>"; };
 		0D5901BA1DEC983B00E6C230 /* JZWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZWebView.m; sourceTree = "<group>"; };
@@ -37,6 +52,9 @@
 		0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMainWindow.m; sourceTree = "<group>"; };
 		0D98E28B1DEC8D5100F130E2 /* JZWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZWindowController.h; sourceTree = "<group>"; };
 		0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZWindowController.m; sourceTree = "<group>"; };
+		465817E6E744EBCFE0DFE71D /* Pods-BoardForGitHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardForGitHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub.release.xcconfig"; sourceTree = "<group>"; };
+		4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BoardForGitHub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0DCFBDCBF4CCBFA2D8EAD1 /* Pods-BoardForGitHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardForGitHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D5901B81DEC980800E6C230 /* WebKit.framework in Frameworks */,
+				DC1E887A772D2DF2B4F688ED /* libPods-BoardForGitHub.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				0D5901B71DEC980800E6C230 /* WebKit.framework */,
+				4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -65,6 +85,7 @@
 				0D98E2701DEC8A0800F130E2 /* BoardForGitHub */,
 				0D98E26F1DEC8A0800F130E2 /* Products */,
 				0D5901B61DEC980800E6C230 /* Frameworks */,
+				A6FC31AA67F9DF39551D6E27 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,14 +100,12 @@
 		0D98E2701DEC8A0800F130E2 /* BoardForGitHub */ = {
 			isa = PBXGroup;
 			children = (
+				0D3AB8411E8EC55D00629B9C /* BoardForGitHub.entitlements */,
 				0D98E2711DEC8A0800F130E2 /* AppDelegate.h */,
 				0D98E2721DEC8A0800F130E2 /* AppDelegate.m */,
 				0D98E2881DEC8CD900F130E2 /* JZMainWindow.h */,
 				0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */,
-				0D98E28B1DEC8D5100F130E2 /* JZWindowController.h */,
-				0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */,
-				0D98E2851DEC8CC400F130E2 /* JZMainViewController.h */,
-				0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */,
+				0DD101F31EA5F7FB003DB52C /* Controller */,
 				0D5901B91DEC983B00E6C230 /* JZWebView.h */,
 				0D5901BA1DEC983B00E6C230 /* JZWebView.m */,
 				0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */,
@@ -106,6 +125,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0DD101F31EA5F7FB003DB52C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0D98E28B1DEC8D5100F130E2 /* JZWindowController.h */,
+				0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */,
+				0D98E2851DEC8CC400F130E2 /* JZMainViewController.h */,
+				0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A6FC31AA67F9DF39551D6E27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DCFBDCBF4CCBFA2D8EAD1 /* Pods-BoardForGitHub.debug.xcconfig */,
+				465817E6E744EBCFE0DFE71D /* Pods-BoardForGitHub.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,9 +152,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D98E2821DEC8A0800F130E2 /* Build configuration list for PBXNativeTarget "BoardForGitHub" */;
 			buildPhases = (
+				BC1906248D5D997D44B03B8A /* [CP] Check Pods Manifest.lock */,
 				0D98E26A1DEC8A0800F130E2 /* Sources */,
 				0D98E26B1DEC8A0800F130E2 /* Frameworks */,
 				0D98E26C1DEC8A0800F130E2 /* Resources */,
+				C7D827AF0C34D6DA85EBC84F /* [CP] Embed Pods Frameworks */,
+				173476584E0753BB08D00397 /* [CP] Copy Pods Resources */,
+				0D3AB83E1E8EC3E700629B9C /* ShellScript */,
+				0D3AB83F1E8EC43500629B9C /* ShellScript */,
+				0D3AB8401E8EC44400629B9C /* ShellScript */,
+				0DD101F11EA5F223003DB52C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -132,13 +178,18 @@
 		0D98E2661DEC8A0800F130E2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Justin Fincher";
 				TargetAttributes = {
 					0D98E26D1DEC8A0800F130E2 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9QJ8M25J77;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -172,6 +223,93 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D3AB83E1E8EC3E700629B9C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a16b406fd4e2436ed428a29739ef5d3c14fb0569 c8d93fa2d50501a4777180b0094f40eaa2e24282ffe23af26ca2448d10487bc5";
+		};
+		0D3AB83F1E8EC43500629B9C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# xcode-version-bump.sh\n# @desc Auto-increment the version number (only) when a project is archived for export.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Check the checkbox \"Run script only when installing\"\n# 6. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 7. Insure your starting version number is in SemVer format (e.g. 1.0.0)\n\n# This splits a two-decimal version string, such as \"0.45.123\", allowing us to increment the third position.\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		0D3AB8401E8EC44400629B9C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n# xcode-build-bump.sh\n# @desc Auto-increment the build number every time the project is run.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		173476584E0753BB08D00397 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC1906248D5D997D44B03B8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C7D827AF0C34D6DA85EBC84F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0D98E26A1DEC8A0800F130E2 /* Sources */ = {
@@ -219,6 +357,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -241,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -266,6 +405,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -282,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -290,13 +430,16 @@
 		};
 		0D98E2831DEC8A0800F130E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC0DCFBDCBF4CCBFA2D8EAD1 /* Pods-BoardForGitHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BoardForGitHub/BoardForGitHub.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9QJ8M25J77;
 				INFOPLIST_FILE = BoardForGitHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JustZht.BoardForGitHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -304,13 +447,16 @@
 		};
 		0D98E2841DEC8A0800F130E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 465817E6E744EBCFE0DFE71D /* Pods-BoardForGitHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BoardForGitHub/BoardForGitHub.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9QJ8M25J77;
 				INFOPLIST_FILE = BoardForGitHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JustZht.BoardForGitHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
