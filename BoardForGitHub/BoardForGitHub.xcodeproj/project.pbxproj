@@ -20,6 +20,19 @@
 		DC1E887A772D2DF2B4F688ED /* libPods-BoardForGitHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0DD101F11EA5F223003DB52C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0D3AB8411E8EC55D00629B9C /* BoardForGitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoardForGitHub.entitlements; sourceTree = "<group>"; };
 		0D5901B71DEC980800E6C230 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -92,10 +105,7 @@
 				0D98E2721DEC8A0800F130E2 /* AppDelegate.m */,
 				0D98E2881DEC8CD900F130E2 /* JZMainWindow.h */,
 				0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */,
-				0D98E28B1DEC8D5100F130E2 /* JZWindowController.h */,
-				0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */,
-				0D98E2851DEC8CC400F130E2 /* JZMainViewController.h */,
-				0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */,
+				0DD101F31EA5F7FB003DB52C /* Controller */,
 				0D5901B91DEC983B00E6C230 /* JZWebView.h */,
 				0D5901BA1DEC983B00E6C230 /* JZWebView.m */,
 				0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */,
@@ -113,6 +123,17 @@
 				0D98E2751DEC8A0800F130E2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0DD101F31EA5F7FB003DB52C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0D98E28B1DEC8D5100F130E2 /* JZWindowController.h */,
+				0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */,
+				0D98E2851DEC8CC400F130E2 /* JZMainViewController.h */,
+				0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		A6FC31AA67F9DF39551D6E27 /* Pods */ = {
@@ -140,6 +161,7 @@
 				0D3AB83E1E8EC3E700629B9C /* ShellScript */,
 				0D3AB83F1E8EC43500629B9C /* ShellScript */,
 				0D3AB8401E8EC44400629B9C /* ShellScript */,
+				0DD101F11EA5F223003DB52C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -156,7 +178,7 @@
 		0D98E2661DEC8A0800F130E2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Justin Fincher";
 				TargetAttributes = {
 					0D98E26D1DEC8A0800F130E2 = {
@@ -335,6 +357,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -357,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -382,6 +405,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -398,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};

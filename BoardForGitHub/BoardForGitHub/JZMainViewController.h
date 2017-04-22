@@ -11,6 +11,6 @@
 
 @interface JZMainViewController : NSViewController
 @property (weak) IBOutlet NSView *windowButtonsContainerView;
-
-
+- (void)setAsCurrentBoard:(NSPasteboard *)pboard
+                 userData:(NSString *)userData error:(NSString **)error;
 @end

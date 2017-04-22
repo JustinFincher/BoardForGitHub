@@ -47,7 +47,7 @@
         [self fixCSS];
         
 #if DEBUG
-        [self.configuration.preferences setValue:@YES forKey:@"developerExtrasEnabled"];
+        [self.configuration .preferences setValue:@YES forKey:@"developerExtrasEnabled"];
 #endif
     }
     return self;
