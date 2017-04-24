@@ -1,0 +1,5 @@
+language: objective-c
+xcode_workspace: BoardForGitHub/BoardForGitHub.xcworkspace # path to your xcodeproj folder
+xcode_scheme: BoardForGitHub
+podfile: BoardForGitHub/Podfile
+osx_image: xcode8.3
