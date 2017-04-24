@@ -67,7 +67,7 @@
 - (void)fixCSS
 {
     // body remove min-width
-    [self evaluateJavaScript:@"$(document.body).removeAttr('min-width');" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"$(document.body).css('min-width', '600px');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // dont display breadcrumb
     [self evaluateJavaScript:@"$('.project-breadcrumb.text-normal.v-align-bottom').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
@@ -124,4 +124,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_SWITCH_BOARD" object:nil];
     }
 }
+
+
 @end
