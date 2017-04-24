@@ -7,10 +7,13 @@
 //
 
 #import "JZWebView.h"
+#import "JZReachability.h"
 
 @interface JZWebView ()<WKScriptMessageHandler>
 
 @property (strong) WKUserScript *jsInterfaceUserScript;
+@property (strong,nonatomic) JZReachability *reachability;
+
 
 @end
 
@@ -49,6 +52,41 @@
 #if DEBUG
         [self.configuration .preferences setValue:@YES forKey:@"developerExtrasEnabled"];
 #endif
+        
+        __weak JZWebView *weakSelf = self;
+        self.reachability = [JZReachability reachabilityWithHostname:@"www.github.com"];
+        self.reachability.reachableBlock = ^(JZReachability *reach)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               [weakSelf reload];
+                           });
+        };
+        
+        self.reachability.unreachableBlock = ^(JZReachability*reach)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               NSAlert *alert = [[NSAlert alloc] init];
+                               [alert addButtonWithTitle:@"Reload"];
+                               [alert addButtonWithTitle:@"Close Board"];
+                               [alert setMessageText:@"No Internet Connection"];
+                               [alert setInformativeText:@"Without Internet Connection, Board For GitHub won't work."];
+                               [alert setAlertStyle:NSWarningAlertStyle];
+                               
+                               [[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+                               NSModalResponse response = [alert runModal];
+                               if (response == NSAlertFirstButtonReturn)
+                               {
+                                   [weakSelf reload];
+                               }else
+                               {
+                                   [NSApp terminate:weakSelf];
+                               }
+                           });
+            
+        };
+        [self.reachability startNotifier];
     }
     return self;
     
@@ -96,24 +134,24 @@
     [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('position', 'fixed').css('z-index', '99999').css('width', '100%');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // make titlebar blur, but buggy. comment out.
-//    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('backdrop-filter', 'blur(10px)').css('background-color', 'rgba(0, 0, 0, 0.5)');" completionHandler:^(id whatIsThis,NSError *err){}];
-
+    //    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('backdrop-filter', 'blur(10px)').css('background-color', 'rgba(0, 0, 0, 0.5)');" completionHandler:^(id whatIsThis,NSError *err){}];
+    
 }
 
 - (void)isGitHubLogined:(void (^ _Nullable)( NSNumber * _Nonnull  isOrNot))completionHandler;
 {
     [self evaluateJavaScript:@"$(document.body).hasClass( 'logged-in' );" completionHandler:^(id whatIsThis,NSError *err)
-    {
-        if ([self.URL.absoluteString isEqualToString:@"https://github.com/login"])
-        {
-            completionHandler ([NSNumber numberWithBool:YES]);
-        }else
-        {
-            NSNumber * isOrNot = (NSNumber *)whatIsThis;
-            
-            completionHandler (isOrNot);
-        }
-    }];
+     {
+         if ([self.URL.absoluteString isEqualToString:@"https://github.com/login"])
+         {
+             completionHandler ([NSNumber numberWithBool:YES]);
+         }else
+         {
+             NSNumber * isOrNot = (NSNumber *)whatIsThis;
+             
+             completionHandler (isOrNot);
+         }
+     }];
 }
 
 #pragma mark - WKScriptMessageHandler

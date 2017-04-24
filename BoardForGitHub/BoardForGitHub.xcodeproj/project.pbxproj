@@ -17,6 +17,8 @@
 		0D98E2871DEC8CC400F130E2 /* JZMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */; };
 		0D98E28A1DEC8CD900F130E2 /* JZMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */; };
 		0D98E28D1DEC8D5100F130E2 /* JZWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */; };
+		0DD295C91EAE130D00CC5A41 /* JZReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD295C81EAE130D00CC5A41 /* JZReachability.m */; };
+		0DD295CC1EAE137D00CC5A41 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD295CB1EAE137D00CC5A41 /* SystemConfiguration.framework */; };
 		DC1E887A772D2DF2B4F688ED /* libPods-BoardForGitHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,9 @@
 		0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMainWindow.m; sourceTree = "<group>"; };
 		0D98E28B1DEC8D5100F130E2 /* JZWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZWindowController.h; sourceTree = "<group>"; };
 		0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZWindowController.m; sourceTree = "<group>"; };
+		0DD295C71EAE130D00CC5A41 /* JZReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZReachability.h; sourceTree = "<group>"; };
+		0DD295C81EAE130D00CC5A41 /* JZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZReachability.m; sourceTree = "<group>"; };
+		0DD295CB1EAE137D00CC5A41 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		465817E6E744EBCFE0DFE71D /* Pods-BoardForGitHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardForGitHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub.release.xcconfig"; sourceTree = "<group>"; };
 		4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BoardForGitHub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0DCFBDCBF4CCBFA2D8EAD1 /* Pods-BoardForGitHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardForGitHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DD295CC1EAE137D00CC5A41 /* SystemConfiguration.framework in Frameworks */,
 				0D5901B81DEC980800E6C230 /* WebKit.framework in Frameworks */,
 				DC1E887A772D2DF2B4F688ED /* libPods-BoardForGitHub.a in Frameworks */,
 			);
@@ -73,6 +79,7 @@
 		0D5901B61DEC980800E6C230 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0DD295CB1EAE137D00CC5A41 /* SystemConfiguration.framework */,
 				0D5901B71DEC980800E6C230 /* WebKit.framework */,
 				4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */,
 			);
@@ -105,9 +112,9 @@
 				0D98E2721DEC8A0800F130E2 /* AppDelegate.m */,
 				0D98E2881DEC8CD900F130E2 /* JZMainWindow.h */,
 				0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */,
+				0DD295CA1EAE131000CC5A41 /* Data */,
 				0DD101F31EA5F7FB003DB52C /* Controller */,
-				0D5901B91DEC983B00E6C230 /* JZWebView.h */,
-				0D5901BA1DEC983B00E6C230 /* JZWebView.m */,
+				0DD295CD1EAE13A800CC5A41 /* View */,
 				0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */,
 				0D98E27A1DEC8A0800F130E2 /* Assets.xcassets */,
 				0D98E27C1DEC8A0800F130E2 /* Main.storyboard */,
@@ -134,6 +141,24 @@
 				0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		0DD295CA1EAE131000CC5A41 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0DD295C71EAE130D00CC5A41 /* JZReachability.h */,
+				0DD295C81EAE130D00CC5A41 /* JZReachability.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		0DD295CD1EAE13A800CC5A41 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0D5901B91DEC983B00E6C230 /* JZWebView.h */,
+				0D5901BA1DEC983B00E6C230 /* JZWebView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		A6FC31AA67F9DF39551D6E27 /* Pods */ = {
@@ -319,6 +344,7 @@
 				0D98E2871DEC8CC400F130E2 /* JZMainViewController.m in Sources */,
 				0D98E2761DEC8A0800F130E2 /* main.m in Sources */,
 				0D98E28A1DEC8CD900F130E2 /* JZMainWindow.m in Sources */,
+				0DD295C91EAE130D00CC5A41 /* JZReachability.m in Sources */,
 				0D98E28D1DEC8D5100F130E2 /* JZWindowController.m in Sources */,
 				0D98E2731DEC8A0800F130E2 /* AppDelegate.m in Sources */,
 				0D5901BB1DEC983B00E6C230 /* JZWebView.m in Sources */,
