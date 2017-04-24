@@ -11,7 +11,7 @@
 
 @interface JZWebView ()<WKScriptMessageHandler>
 
-@property (strong) WKUserScript *jsInterfaceUserScript;
+@property (strong) WKUserScript *jsInterfaceUserScriptJQueryCode;
 @property (strong,nonatomic) JZReachability *reachability;
 
 
@@ -96,10 +96,10 @@
 {
     NSString *jqueryCode = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource: @"jquery-3.1.1.min" ofType: @"js"] encoding:NSUTF8StringEncoding error:NULL];
     
-    self.jsInterfaceUserScript = [[WKUserScript alloc] initWithSource:jqueryCode injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+    self.jsInterfaceUserScriptJQueryCode = [[WKUserScript alloc] initWithSource:jqueryCode injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
     
     [self.configuration.userContentController removeAllUserScripts];
-    [self.configuration.userContentController addUserScript:self.jsInterfaceUserScript];
+    [self.configuration.userContentController addUserScript:self.jsInterfaceUserScriptJQueryCode];
 }
 
 - (void)fixCSS

@@ -28,6 +28,10 @@
     JZMainViewController *controller = (JZMainViewController *)window.contentViewController;
     [NSApp setServicesProvider:controller];
 }
+- (IBAction)reloadBoardButtonPressed:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_RELOAD_BOARD" object:nil];
+}
 
 - (IBAction)openButtonPressed:(id)sender
 {
