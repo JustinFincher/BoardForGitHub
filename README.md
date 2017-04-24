@@ -1,5 +1,7 @@
 # Board For GitHub
 
+[![Build Status](https://travis-ci.org/JustinFincher/BoardForGitHub.svg?branch=master)](https://travis-ci.org/JustinFincher/BoardForGitHub)
+
 A small application to monitor your GitHub project web page in a native macOS app :octocat:!
 
 ![](https://raw.githubusercontent.com/JustinFincher/BoardForGitHub/master/DemoImgs/Banner.jpg)

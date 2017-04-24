@@ -19,6 +19,7 @@
 		0D98E28D1DEC8D5100F130E2 /* JZWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */; };
 		0DD295C91EAE130D00CC5A41 /* JZReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD295C81EAE130D00CC5A41 /* JZReachability.m */; };
 		0DD295CC1EAE137D00CC5A41 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD295CB1EAE137D00CC5A41 /* SystemConfiguration.framework */; };
+		0DD295D11EAE36FC00CC5A41 /* pace.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0DD295D01EAE36FC00CC5A41 /* pace.min.js */; };
 		DC1E887A772D2DF2B4F688ED /* libPods-BoardForGitHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		0DD295C71EAE130D00CC5A41 /* JZReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZReachability.h; sourceTree = "<group>"; };
 		0DD295C81EAE130D00CC5A41 /* JZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZReachability.m; sourceTree = "<group>"; };
 		0DD295CB1EAE137D00CC5A41 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0DD295D01EAE36FC00CC5A41 /* pace.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = pace.min.js; sourceTree = "<group>"; };
 		465817E6E744EBCFE0DFE71D /* Pods-BoardForGitHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardForGitHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub.release.xcconfig"; sourceTree = "<group>"; };
 		4E55B1E17F51FD38362C0795 /* libPods-BoardForGitHub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BoardForGitHub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0DCFBDCBF4CCBFA2D8EAD1 /* Pods-BoardForGitHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardForGitHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoardForGitHub/Pods-BoardForGitHub.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +117,7 @@
 				0DD295CA1EAE131000CC5A41 /* Data */,
 				0DD101F31EA5F7FB003DB52C /* Controller */,
 				0DD295CD1EAE13A800CC5A41 /* View */,
-				0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */,
+				0DD295D21EAE370200CC5A41 /* JS */,
 				0D98E27A1DEC8A0800F130E2 /* Assets.xcassets */,
 				0D98E27C1DEC8A0800F130E2 /* Main.storyboard */,
 				0D98E27F1DEC8A0800F130E2 /* Info.plist */,
@@ -159,6 +161,15 @@
 				0D5901BA1DEC983B00E6C230 /* JZWebView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		0DD295D21EAE370200CC5A41 /* JS */ = {
+			isa = PBXGroup;
+			children = (
+				0DD295D01EAE36FC00CC5A41 /* pace.min.js */,
+				0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */,
+			);
+			name = JS;
 			sourceTree = "<group>";
 		};
 		A6FC31AA67F9DF39551D6E27 /* Pods */ = {
@@ -242,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D98E27B1DEC8A0800F130E2 /* Assets.xcassets in Resources */,
+				0DD295D11EAE36FC00CC5A41 /* pace.min.js in Resources */,
 				0D5901BD1DECA6E500E6C230 /* jquery-3.1.1.min.js in Resources */,
 				0D98E27E1DEC8A0800F130E2 /* Main.storyboard in Resources */,
 			);

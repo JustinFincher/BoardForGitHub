@@ -3,3 +3,4 @@ xcode_workspace: BoardForGitHub/BoardForGitHub.xcworkspace # path to your xcodep
 xcode_scheme: BoardForGitHub
 podfile: BoardForGitHub/Podfile
 osx_image: xcode8.3
+script:  xcodebuild -workspace BoardForGitHub/BoardForGitHub.xcworkspace -scheme BoardForGitHub -configuration debug
