@@ -7,9 +7,10 @@
 //
 
 #import "JZMainViewController.h"
+#import <WebKit/WebKit.h>
 #import "JZWebView.h"
 
-@interface JZMainViewController ()<WKNavigationDelegate,NSSplitViewDelegate,WKUIDelegate>
+@interface JZMainViewController ()<WKNavigationDelegate,NSSplitViewDelegate,WKUIDelegate,WebPolicyDelegate>
 @property (weak) IBOutlet NSVisualEffectView *visualEffectView;
 @property (strong,nonatomic) JZWebView *webView;
 
@@ -31,11 +32,11 @@
     self.webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
-    
     [self loadDefault];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SWITCH_BOARD:) name:@"JZ_SWITCH_BOARD" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_RELOAD_BOARD:) name:@"JZ_RELOAD_BOARD" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_REVERT_BOARD:) name:@"JZ_REVERT_BOARD" object:nil];
 }
 
 
@@ -111,7 +112,28 @@
     }
 }
 
+#pragma UI Delegate
+- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:message];
+    [alert runModal];
+}
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setMessageText:message];
+    completionHandler([alert runModal] == NSAlertFirstButtonReturn);
+}
 #pragma mark - Notification Center
+- (void)JZ_REVERT_BOARD:(NSNotification *)notif
+{
+    [self.webView goBack];
+}
 - (void)JZ_RELOAD_BOARD:(NSNotification *)notif
 {
     [self.webView reload];
@@ -126,9 +148,10 @@
     
     NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 280, 24)];
     [input setStringValue:@""];
-    
     [alert setAccessoryView:input];
+    [[alert window] setInitialFirstResponder: input];
     NSInteger button = [alert runModal];
+    
     if (button == NSAlertFirstButtonReturn)
     {
         [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL URLWithString:[input stringValue]]];
@@ -156,31 +179,5 @@
     NSURL *url = [NSURL URLWithString:pboardString];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
-#pragma UI Delegate
-- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert setMessageText:message];
-    [alert runModal];
-}
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert addButtonWithTitle:@"Cancel"];
-    [alert setAlertStyle:NSWarningAlertStyle];
-    [alert setMessageText:message];
-    completionHandler([alert runModal] == NSAlertFirstButtonReturn);
-}
-//- (NSUInteger)webView:(WebView *)sender dragSourceActionMaskForPoint:(NSPoint)point
-//{
-//    return WebDragSourceActionNone; // Disable any WebView content drag
-//}
-//
-//- (NSUInteger)webView:(WebView *)sender dragDestinationActionMaskForDraggingInfo:(id<NSDraggingInfo>)draggingInfo
-//{
-//    return WebDragDestinationActionNone; // Disable any WebView content drop
-//}
 
 @end

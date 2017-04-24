@@ -32,6 +32,10 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_RELOAD_BOARD" object:nil];
 }
+- (IBAction)revertBoardButtonPressed:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_REVERT_BOARD" object:nil];
+}
 
 - (IBAction)openButtonPressed:(id)sender
 {

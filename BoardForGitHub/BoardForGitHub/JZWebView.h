@@ -7,6 +7,7 @@
 //
 @import WebKit;
 #import <Cocoa/Cocoa.h>
+#import <WebKit/WebPolicyDelegate.h>
 
 @interface JZWebView : WKWebView
 
