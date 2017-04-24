@@ -52,7 +52,8 @@
                          }
                      }];
 }
-- (BOOL)application:(NSApplication *)theApplication openFile:(nonnull NSString *)filename
+- (BOOL)application:(NSApplication *)sender
+           openFile:(NSString *)filename
 {
     return YES;
 }

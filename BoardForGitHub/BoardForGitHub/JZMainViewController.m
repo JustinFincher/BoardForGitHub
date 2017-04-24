@@ -9,7 +9,7 @@
 #import "JZMainViewController.h"
 #import "JZWebView.h"
 
-@interface JZMainViewController ()<WKNavigationDelegate,NSSplitViewDelegate>
+@interface JZMainViewController ()<WKNavigationDelegate,NSSplitViewDelegate,WKUIDelegate>
 @property (weak) IBOutlet NSVisualEffectView *visualEffectView;
 @property (strong,nonatomic) JZWebView *webView;
 
@@ -30,11 +30,13 @@
     [self.visualEffectView addSubview:self.webView];
     self.webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     self.webView.navigationDelegate = self;
+    self.webView.UIDelegate = self;
     
     [self loadDefault];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SWITCH_BOARD:) name:@"JZ_SWITCH_BOARD" object:nil];
 }
+
 
 - (void)loadDefault
 {
@@ -149,5 +151,15 @@
     NSURL *url = [NSURL URLWithString:pboardString];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
+#pragma UI Delegate
+//- (NSUInteger)webView:(WebView *)sender dragSourceActionMaskForPoint:(NSPoint)point
+//{
+//    return WebDragSourceActionNone; // Disable any WebView content drag
+//}
+//
+//- (NSUInteger)webView:(WebView *)sender dragDestinationActionMaskForDraggingInfo:(id<NSDraggingInfo>)draggingInfo
+//{
+//    return WebDragDestinationActionNone; // Disable any WebView content drop
+//}
 
 @end
