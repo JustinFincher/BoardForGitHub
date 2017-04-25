@@ -66,6 +66,7 @@
                                                                     completionHandler:^{
                                                                         NSLog(@"Cookies for %@ deleted successfully",record.displayName);
                                                                     }];
+                             [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_RELOAD_BOARD" object:nil];
                          }
                      }];
 }

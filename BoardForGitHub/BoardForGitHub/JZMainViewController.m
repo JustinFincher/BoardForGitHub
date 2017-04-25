@@ -86,7 +86,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     NSString *urlString = navigationAction.request.URL.absoluteString;
-    NSLog(@"URL String %@",urlString);
+//    NSLog(@"URL String %@",urlString);
     NSError *error;
     NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:@"https://github.com/([-\\w\\.]+)/([-\\w\\.]+)/projects/([-\\w\\.]+)" options:0 error:&error];
     
