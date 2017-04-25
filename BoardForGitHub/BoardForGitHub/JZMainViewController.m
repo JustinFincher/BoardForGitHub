@@ -37,6 +37,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SWITCH_BOARD:) name:@"JZ_SWITCH_BOARD" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_RELOAD_BOARD:) name:@"JZ_RELOAD_BOARD" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_REVERT_BOARD:) name:@"JZ_REVERT_BOARD" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SHOW_BOARD_MENU:) name:@"JZ_SHOW_BOARD_MENU" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_ADD_CARDS_FROM:) name:@"JZ_ADD_CARDS_FROM" object:nil];
 }
 
 
@@ -130,6 +132,14 @@
     completionHandler([alert runModal] == NSAlertFirstButtonReturn);
 }
 #pragma mark - Notification Center
+- (void)JZ_SHOW_BOARD_MENU:(NSNotification *)notif
+{
+    [self.webView toggleBoardMenu];
+}
+- (void)JZ_ADD_CARDS_FROM:(NSNotification *)notif
+{
+    [self.webView toggleAddCardsFrom];
+}
 - (void)JZ_REVERT_BOARD:(NSNotification *)notif
 {
     [self.webView goBack];
