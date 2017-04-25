@@ -7,11 +7,14 @@
 //
 @import WebKit;
 #import <Cocoa/Cocoa.h>
-
 @interface JZWebView : WKWebView
 
 - (void)fixCSS;
 
 - (void)isGitHubLogined:(void (^ _Nullable)( NSNumber * _Nonnull  isOrNot))completionHandler;
+- (void)runJS:(NSString *_Nullable)str;
+
+- (void)toggleBoardMenu;
+- (void)toggleAddCardsFrom;
 
 @end

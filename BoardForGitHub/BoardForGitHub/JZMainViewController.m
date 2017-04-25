@@ -7,9 +7,10 @@
 //
 
 #import "JZMainViewController.h"
+#import <WebKit/WebKit.h>
 #import "JZWebView.h"
 
-@interface JZMainViewController ()<WKNavigationDelegate,NSSplitViewDelegate,WKUIDelegate>
+@interface JZMainViewController ()<WKNavigationDelegate,NSSplitViewDelegate,WKUIDelegate,WebPolicyDelegate>
 @property (weak) IBOutlet NSVisualEffectView *visualEffectView;
 @property (strong,nonatomic) JZWebView *webView;
 
@@ -31,11 +32,13 @@
     self.webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
-    
     [self loadDefault];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SWITCH_BOARD:) name:@"JZ_SWITCH_BOARD" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_RELOAD_BOARD:) name:@"JZ_RELOAD_BOARD" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_REVERT_BOARD:) name:@"JZ_REVERT_BOARD" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_SHOW_BOARD_MENU:) name:@"JZ_SHOW_BOARD_MENU" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_ADD_CARDS_FROM:) name:@"JZ_ADD_CARDS_FROM" object:nil];
 }
 
 
@@ -71,7 +74,11 @@
          {
              if (![loginedInOrNot boolValue])
              {
-                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/login"]]];
+                 bool isInProcess = ([self.webView.URL.absoluteString isEqualToString:@"https://github.com/login"] || [self.webView.URL.absoluteString isEqualToString:@"https://github.com/session"] || [self.webView.URL.absoluteString isEqualToString:@"https://github.com/sessions/two-factor"]);
+                 if (!isInProcess)
+                 {
+                     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/login"]]];
+                 }
              }
          }];
     }
@@ -79,6 +86,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     NSString *urlString = navigationAction.request.URL.absoluteString;
+//    NSLog(@"URL String %@",urlString);
     NSError *error;
     NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:@"https://github.com/([-\\w\\.]+)/([-\\w\\.]+)/projects/([-\\w\\.]+)" options:0 error:&error];
     
@@ -96,7 +104,7 @@
         {
             decisionHandler (WKNavigationActionPolicyAllow);
         }
-    }else if ([urlString isEqualToString:@"https://github.com/login"] || [urlString isEqualToString:@"https://github.com/session"])
+    }else if ([urlString isEqualToString:@"https://github.com/login"] || [urlString isEqualToString:@"https://github.com/session"] || [urlString isEqualToString:@"https://github.com/sessions/two-factor"])
     {
         decisionHandler (WKNavigationActionPolicyAllow);
     }else if ([urlString isEqualToString:@"https://github.com/"])
@@ -111,7 +119,36 @@
     }
 }
 
+#pragma UI Delegate
+- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:message];
+    [alert runModal];
+}
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setMessageText:message];
+    completionHandler([alert runModal] == NSAlertFirstButtonReturn);
+}
 #pragma mark - Notification Center
+- (void)JZ_SHOW_BOARD_MENU:(NSNotification *)notif
+{
+    [self.webView toggleBoardMenu];
+}
+- (void)JZ_ADD_CARDS_FROM:(NSNotification *)notif
+{
+    [self.webView toggleAddCardsFrom];
+}
+- (void)JZ_REVERT_BOARD:(NSNotification *)notif
+{
+    [self.webView goBack];
+}
 - (void)JZ_RELOAD_BOARD:(NSNotification *)notif
 {
     [self.webView reload];
@@ -126,9 +163,10 @@
     
     NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 280, 24)];
     [input setStringValue:@""];
-    
     [alert setAccessoryView:input];
+    [[alert window] setInitialFirstResponder: input];
     NSInteger button = [alert runModal];
+    
     if (button == NSAlertFirstButtonReturn)
     {
         [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL URLWithString:[input stringValue]]];
@@ -156,31 +194,5 @@
     NSURL *url = [NSURL URLWithString:pboardString];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
-#pragma UI Delegate
-- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert setMessageText:message];
-    [alert runModal];
-}
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert addButtonWithTitle:@"Cancel"];
-    [alert setAlertStyle:NSWarningAlertStyle];
-    [alert setMessageText:message];
-    completionHandler([alert runModal] == NSAlertFirstButtonReturn);
-}
-//- (NSUInteger)webView:(WebView *)sender dragSourceActionMaskForPoint:(NSPoint)point
-//{
-//    return WebDragSourceActionNone; // Disable any WebView content drag
-//}
-//
-//- (NSUInteger)webView:(WebView *)sender dragDestinationActionMaskForDraggingInfo:(id<NSDraggingInfo>)draggingInfo
-//{
-//    return WebDragDestinationActionNone; // Disable any WebView content drop
-//}
 
 @end

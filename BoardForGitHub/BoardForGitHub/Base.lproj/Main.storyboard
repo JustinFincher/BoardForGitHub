@@ -121,6 +121,17 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
+                                        <menuItem title="Columns" id="4rJ-U2-7vq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Columns" id="J3K-rp-6KU">
+                                                <items>
+                                                    <menuItem title="Item" id="4wN-jp-s3B">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Gxx-Yg-PWa"/>
                                         <menuItem title="Cut" keyEquivalent="x" id="uRl-iY-unG">
                                             <connections>
                                                 <action selector="cut:" target="Ady-hI-5gd" id="YJe-68-I9s"/>
@@ -329,31 +340,28 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Reload Board" id="TIr-UE-BFY">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Reload Board" keyEquivalent="r" id="TIr-UE-BFY">
                                             <connections>
                                                 <action selector="reloadBoardButtonPressed:" target="Voe-Tx-rLC" id="3cQ-dT-GBs"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        <menuItem title="Revert Board" keyEquivalent="Z" id="xiF-lX-6dg">
                                             <connections>
-                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="BXY-wc-z0C"/>
+                                                <action selector="revertBoardButtonPressed:" target="Voe-Tx-rLC" id="aQN-Yi-ZDg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="1UK-8n-QPP">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem isSeparatorItem="YES" id="dUc-zM-A6z"/>
+                                        <menuItem title="Toggle Board Menu" keyEquivalent="M" id="xoR-tx-cXy">
                                             <connections>
-                                                <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="pQI-g3-MTW"/>
+                                                <action selector="showBoardMenuPressed:" target="Voe-Tx-rLC" id="mqj-yg-ncF"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="hB3-LF-h0Y"/>
-                                        <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                        <menuItem title="Toggle Add Cards From" keyEquivalent="A" id="eC6-wQ-DYc">
                                             <connections>
-                                                <action selector="toggleSourceList:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
+                                                <action selector="addCardsFromPressed:" target="Voe-Tx-rLC" id="2rf-Mf-ORQ"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="N1k-Mw-Rn4"/>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
@@ -409,7 +417,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="76" y="-92"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">

@@ -28,14 +28,27 @@
     JZMainViewController *controller = (JZMainViewController *)window.contentViewController;
     [NSApp setServicesProvider:controller];
 }
+#pragma mark - Menus Buttons
 - (IBAction)reloadBoardButtonPressed:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_RELOAD_BOARD" object:nil];
+}
+- (IBAction)revertBoardButtonPressed:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_REVERT_BOARD" object:nil];
 }
 
 - (IBAction)openButtonPressed:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_SWITCH_BOARD" object:nil];
+}
+- (IBAction)showBoardMenuPressed:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_SHOW_BOARD_MENU" object:nil];
+}
+- (IBAction)addCardsFromPressed:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_ADD_CARDS_FROM" object:nil];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -53,6 +66,7 @@
                                                                     completionHandler:^{
                                                                         NSLog(@"Cookies for %@ deleted successfully",record.displayName);
                                                                     }];
+                             [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_RELOAD_BOARD" object:nil];
                          }
                      }];
 }

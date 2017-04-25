@@ -101,7 +101,10 @@
     [self.configuration.userContentController removeAllUserScripts];
     [self.configuration.userContentController addUserScript:self.jsInterfaceUserScriptJQueryCode];
 }
-
+- (void)runJS:(NSString *)str
+{
+    [self evaluateJavaScript:str completionHandler:^(id whatIsThis,NSError *err){}];
+}
 - (void)fixCSS
 {
     // body remove min-width
@@ -136,6 +139,17 @@
     // make titlebar blur, but buggy. comment out.
     //    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('backdrop-filter', 'blur(10px)').css('background-color', 'rgba(0, 0, 0, 0.5)');" completionHandler:^(id whatIsThis,NSError *err){}];
     
+}
+- (void)toggleBoardMenu
+{
+    [self evaluateJavaScript:
+     @"if ($('.project-pane.js-project-pane.project-pane-menu.js-project-menu-pane.d-none').length){$('.btn-link.project-header-link.js-show-project-menu').trigger('click');}else{$('.btn-link.js-hide-project-menu').trigger('click');}" completionHandler:^(id whatIsThis,NSError *err){}];
+
+}
+- (void)toggleAddCardsFrom
+{
+    [self evaluateJavaScript:
+  @"if ($('.project-pane.js-project-pane.js-project-triage-pane.d-none').length){$('.btn-link.js-show-project-triage').trigger('click');}else{$('.btn-link.js-hide-project-menu').trigger('click');}" completionHandler:^(id whatIsThis,NSError *err){}];
 }
 
 - (void)isGitHubLogined:(void (^ _Nullable)( NSNumber * _Nonnull  isOrNot))completionHandler;
