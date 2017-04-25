@@ -74,7 +74,11 @@
          {
              if (![loginedInOrNot boolValue])
              {
-                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/login"]]];
+                 bool isInProcess = ([self.webView.URL.absoluteString isEqualToString:@"https://github.com/login"] || [self.webView.URL.absoluteString isEqualToString:@"https://github.com/session"] || [self.webView.URL.absoluteString isEqualToString:@"https://github.com/sessions/two-factor"]);
+                 if (!isInProcess)
+                 {
+                     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/login"]]];
+                 }
              }
          }];
     }
@@ -82,6 +86,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     NSString *urlString = navigationAction.request.URL.absoluteString;
+    NSLog(@"URL String %@",urlString);
     NSError *error;
     NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:@"https://github.com/([-\\w\\.]+)/([-\\w\\.]+)/projects/([-\\w\\.]+)" options:0 error:&error];
     
