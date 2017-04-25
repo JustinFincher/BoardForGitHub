@@ -99,7 +99,7 @@
         {
             decisionHandler (WKNavigationActionPolicyAllow);
         }
-    }else if ([urlString isEqualToString:@"https://github.com/login"] || [urlString isEqualToString:@"https://github.com/session"])
+    }else if ([urlString isEqualToString:@"https://github.com/login"] || [urlString isEqualToString:@"https://github.com/session"] || [urlString isEqualToString:@"https://github.com/sessions/two-factor"])
     {
         decisionHandler (WKNavigationActionPolicyAllow);
     }else if ([urlString isEqualToString:@"https://github.com/"])
