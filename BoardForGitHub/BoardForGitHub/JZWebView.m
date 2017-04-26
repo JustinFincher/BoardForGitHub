@@ -12,6 +12,8 @@
 @interface JZWebView ()<WKScriptMessageHandler>
 
 @property (strong) WKUserScript *jsInterfaceUserScriptJQueryCode;
+@property (strong) WKUserScript *jsInterfaceUserScriptPaceJSCode;
+@property (strong) WKUserScript *jsInterfaceUserScriptCSSCode;
 @property (strong,nonatomic) JZReachability *reachability;
 
 
@@ -88,6 +90,7 @@
         };
         [self.reachability startNotifier];
     }
+    self.enclosingScrollView.verticalScrollElasticity = NSScrollElasticityNone;
     return self;
     
 }
@@ -95,11 +98,15 @@
 - (void)refreshJS
 {
     NSString *jqueryCode = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource: @"jquery-3.1.1.min" ofType: @"js"] encoding:NSUTF8StringEncoding error:NULL];
-    
     self.jsInterfaceUserScriptJQueryCode = [[WKUserScript alloc] initWithSource:jqueryCode injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+    NSString *paceCode = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource: @"pace.min" ofType: @"js"] encoding:NSUTF8StringEncoding error:NULL];
+    self.jsInterfaceUserScriptPaceJSCode = [[WKUserScript alloc] initWithSource:paceCode injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+    self.jsInterfaceUserScriptCSSCode = [[WKUserScript alloc] initWithSource:@"function addStyleString(str) {var node = document.createElement('style');node.innerHTML = str;document.body.appendChild(node);}" injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
     
     [self.configuration.userContentController removeAllUserScripts];
     [self.configuration.userContentController addUserScript:self.jsInterfaceUserScriptJQueryCode];
+    [self.configuration.userContentController addUserScript:self.jsInterfaceUserScriptPaceJSCode];
+    [self.configuration.userContentController addUserScript:self.jsInterfaceUserScriptCSSCode];
 }
 - (void)runJS:(NSString *)str
 {
@@ -107,6 +114,9 @@
 }
 - (void)fixCSS
 {
+    // pace js css
+    [self evaluateJavaScript:@"addStyleString('.pace {  -webkit-pointer-events: none;  pointer-events: none;  -webkit-user-select: none;  -moz-user-select: none;  user-select: none;}.pace-inactive {  display: none;}.pace .pace-progress {  background: #29d;  position: fixed;  z-index: 2000;  top: 0;  right: 100%;  width: 100%;  height: 2px;}');" completionHandler:^(id whatIsThis,NSError *err){}];
+    
     // body remove min-width
     [self evaluateJavaScript:@"$(document.body).css('min-width', '600px');" completionHandler:^(id whatIsThis,NSError *err){}];
     
@@ -134,11 +144,14 @@
     [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell:eq(1)').css('padding-right', '0px !important');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // ehhh header get fixed because it's now a titlebar
-    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('position', 'fixed').css('z-index', '99999').css('width', '100%');" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('position', 'fixed').css('z-index', '9').css('width', '100%');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // make titlebar blur, but buggy. comment out.
     //    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('backdrop-filter', 'blur(10px)').css('background-color', 'rgba(0, 0, 0, 0.5)');" completionHandler:^(id whatIsThis,NSError *err){}];
     
+    // fill cards space
+    [self evaluateJavaScript:@"$('.project-columns.d-flex.flex-column.pt-3.pl-5.clearfix.position-relative').css('cssText', 'background-color: rgba(0, 0, 0, 0);margin-top: 50px;padding-left: 0px !important;top: 10px !important;');" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"$('.project-columns-container.d-flex.flex-row.pb-3.position-relative.js-project-columns-container.js-socket-channel.js-project-columns-drag-container').css('cssText', 'padding-left: 16px !important;');" completionHandler:^(id whatIsThis,NSError *err){}];
 }
 - (void)toggleBoardMenu
 {

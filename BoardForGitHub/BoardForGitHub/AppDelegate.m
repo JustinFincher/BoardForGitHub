@@ -37,6 +37,10 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_REVERT_BOARD" object:nil];
 }
+- (IBAction)forwardBoardButtonPressed:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_FORWARD_BOARD" object:nil];
+}
+
 
 - (IBAction)openButtonPressed:(id)sender
 {
