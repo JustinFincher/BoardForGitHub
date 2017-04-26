@@ -17,6 +17,7 @@
 		0D98E2871DEC8CC400F130E2 /* JZMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */; };
 		0D98E28A1DEC8CD900F130E2 /* JZMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */; };
 		0D98E28D1DEC8D5100F130E2 /* JZWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */; };
+		0DAD7B961EB02E0A009E8D5F /* pace.css in Resources */ = {isa = PBXBuildFile; fileRef = 0DAD7B951EB02E0A009E8D5F /* pace.css */; };
 		0DD295C91EAE130D00CC5A41 /* JZReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD295C81EAE130D00CC5A41 /* JZReachability.m */; };
 		0DD295CC1EAE137D00CC5A41 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD295CB1EAE137D00CC5A41 /* SystemConfiguration.framework */; };
 		0DD295D11EAE36FC00CC5A41 /* pace.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0DD295D01EAE36FC00CC5A41 /* pace.min.js */; };
@@ -55,6 +56,7 @@
 		0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMainWindow.m; sourceTree = "<group>"; };
 		0D98E28B1DEC8D5100F130E2 /* JZWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZWindowController.h; sourceTree = "<group>"; };
 		0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZWindowController.m; sourceTree = "<group>"; };
+		0DAD7B951EB02E0A009E8D5F /* pace.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = pace.css; sourceTree = "<group>"; };
 		0DD295C71EAE130D00CC5A41 /* JZReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZReachability.h; sourceTree = "<group>"; };
 		0DD295C81EAE130D00CC5A41 /* JZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZReachability.m; sourceTree = "<group>"; };
 		0DD295CB1EAE137D00CC5A41 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -117,7 +119,7 @@
 				0DD295CA1EAE131000CC5A41 /* Data */,
 				0DD101F31EA5F7FB003DB52C /* Controller */,
 				0DD295CD1EAE13A800CC5A41 /* View */,
-				0DD295D21EAE370200CC5A41 /* JS */,
+				0DD295D21EAE370200CC5A41 /* Web */,
 				0D98E27A1DEC8A0800F130E2 /* Assets.xcassets */,
 				0D98E27C1DEC8A0800F130E2 /* Main.storyboard */,
 				0D98E27F1DEC8A0800F130E2 /* Info.plist */,
@@ -163,13 +165,14 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		0DD295D21EAE370200CC5A41 /* JS */ = {
+		0DD295D21EAE370200CC5A41 /* Web */ = {
 			isa = PBXGroup;
 			children = (
 				0DD295D01EAE36FC00CC5A41 /* pace.min.js */,
+				0DAD7B951EB02E0A009E8D5F /* pace.css */,
 				0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */,
 			);
-			name = JS;
+			name = Web;
 			sourceTree = "<group>";
 		};
 		A6FC31AA67F9DF39551D6E27 /* Pods */ = {
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D98E27B1DEC8A0800F130E2 /* Assets.xcassets in Resources */,
+				0DAD7B961EB02E0A009E8D5F /* pace.css in Resources */,
 				0DD295D11EAE36FC00CC5A41 /* pace.min.js in Resources */,
 				0D5901BD1DECA6E500E6C230 /* jquery-3.1.1.min.js in Resources */,
 				0D98E27E1DEC8A0800F130E2 /* Main.storyboard in Resources */,

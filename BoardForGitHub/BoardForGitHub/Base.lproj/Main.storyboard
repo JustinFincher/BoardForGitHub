@@ -340,17 +340,38 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
+                                        <menuItem isSeparatorItem="YES" id="N1k-Mw-Rn4"/>
+                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="dU3-MA-1Rq"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Board" id="myf-wX-5xW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Board" id="otO-QJ-upS">
+                                    <items>
                                         <menuItem title="Reload Board" keyEquivalent="r" id="TIr-UE-BFY">
                                             <connections>
                                                 <action selector="reloadBoardButtonPressed:" target="Voe-Tx-rLC" id="3cQ-dT-GBs"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Revert Board" keyEquivalent="Z" id="xiF-lX-6dg">
+                                        <menuItem title="Go Back" keyEquivalent="" id="xiF-lX-6dg">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="revertBoardButtonPressed:" target="Voe-Tx-rLC" id="aQN-Yi-ZDg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="dUc-zM-A6z"/>
+                                        <menuItem title="Go Forward" keyEquivalent="" id="6WH-uw-0IA">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="forwardBoardButtonPressed:" target="Voe-Tx-rLC" id="ciq-Z2-xgg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="hiX-ww-whf"/>
                                         <menuItem title="Toggle Board Menu" keyEquivalent="M" id="xoR-tx-cXy">
                                             <connections>
                                                 <action selector="showBoardMenuPressed:" target="Voe-Tx-rLC" id="mqj-yg-ncF"/>
@@ -359,13 +380,6 @@
                                         <menuItem title="Toggle Add Cards From" keyEquivalent="A" id="eC6-wQ-DYc">
                                             <connections>
                                                 <action selector="addCardsFromPressed:" target="Voe-Tx-rLC" id="2rf-Mf-ORQ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="N1k-Mw-Rn4"/>
-                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="dU3-MA-1Rq"/>
                                             </connections>
                                         </menuItem>
                                     </items>
