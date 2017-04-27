@@ -33,8 +33,7 @@
 - (id)initWithCoder:(NSCoder *)coder
 {
     if ([super initWithCoder:coder])
-    {
-    }
+    {    }
     return self;
 }
 
@@ -90,7 +89,8 @@
         };
         [self.reachability startNotifier];
     }
-    self.enclosingScrollView.verticalScrollElasticity = NSScrollElasticityNone;
+//    self.enclosingScrollView.verticalScrollElasticity = NSScrollElasticityNone;
+//    self.webFrame.frameView.documentView.enclosingScrollView.verticalScrollElasticity = NSScrollElasticityNone;
     return self;
     
 }
@@ -150,7 +150,7 @@
     //    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('backdrop-filter', 'blur(10px)').css('background-color', 'rgba(0, 0, 0, 0.5)');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // fill cards space
-    [self evaluateJavaScript:@"$('.project-columns.d-flex.flex-column.pt-3.pl-5.clearfix.position-relative').css('cssText', 'background-color: rgba(0, 0, 0, 0);margin-top: 50px;padding-left: 0px !important;top: 10px !important;');" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"$('.project-columns.d-flex.flex-column.pt-3.pl-5.clearfix.position-relative').css('cssText', 'background-color: rgba(0, 0, 0, 0);margin-top: 50px;padding-left: 0px !important;top: 20px !important;');" completionHandler:^(id whatIsThis,NSError *err){}];
     [self evaluateJavaScript:@"$('.project-columns-container.d-flex.flex-row.pb-3.position-relative.js-project-columns-container.js-socket-channel.js-project-columns-drag-container').css('cssText', 'padding-left: 16px !important;');" completionHandler:^(id whatIsThis,NSError *err){}];
 }
 - (void)toggleBoardMenu
