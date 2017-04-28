@@ -42,6 +42,7 @@
     WKWebViewConfiguration *conf = [[WKWebViewConfiguration alloc] init];
     conf.userContentController = [[WKUserContentController alloc] init];
     [conf.userContentController addScriptMessageHandler:self name:@"switchBoard"];
+    [conf.userContentController addScriptMessageHandler:self name:@"openSettings"];
     
     if ([super initWithFrame:frameRect configuration:conf])
     {
@@ -49,6 +50,7 @@
         self.layer.backgroundColor = [[NSColor clearColor] CGColor];
         [self refreshJS];
         [self fixCSS];
+
         
 #if DEBUG
         [self.configuration .preferences setValue:@YES forKey:@"developerExtrasEnabled"];
@@ -91,6 +93,8 @@
     }
 //    self.enclosingScrollView.verticalScrollElasticity = NSScrollElasticityNone;
 //    self.webFrame.frameView.documentView.enclosingScrollView.verticalScrollElasticity = NSScrollElasticityNone;
+    
+    
     return self;
     
 }
@@ -118,7 +122,7 @@
     [self evaluateJavaScript:@"addStyleString('.pace {  -webkit-pointer-events: none;  pointer-events: none;  -webkit-user-select: none;  -moz-user-select: none;  user-select: none;}.pace-inactive {  display: none;}.pace .pace-progress {  background: #29d;  position: fixed;  z-index: 2000;  top: 0;  right: 100%;  width: 100%;  height: 2px;}');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // body remove min-width
-    [self evaluateJavaScript:@"$(document.body).css('min-width', '600px');" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"$(document.body).css('min-width', '600px').css('overflow', 'hidden');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // dont display breadcrumb
     [self evaluateJavaScript:@"$('.project-breadcrumb.text-normal.v-align-bottom').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
@@ -137,21 +141,19 @@
     [self evaluateJavaScript:@"$('.header-logo-invertocat').removeAttr('href').unbind('click').click(function(){ window.webkit.messageHandlers.switchBoard.postMessage('switch'); });" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // remove "quit full screen" button
-    [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell.pr-4:eq(2)').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
-    // remove "settings" button
-    [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell:eq(2)').remove();" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"if ($('.d-table.mt-1.float-right').children().length == 4){$('.d-table.mt-1.float-right > .d-table-cell:eq(2)').remove();}else{}" completionHandler:^(id whatIsThis,NSError *err){}];
+    // set "settings" button to be perferences
+    [self evaluateJavaScript:@"if ($('.d-table.mt-1.float-right').children().length == 3){$('.d-table.mt-1.float-right > .d-table-cell:eq(2) > a').attr('href', '#settings').off('click').click(function(){window.webkit.messageHandlers.openSettings.postMessage('open');});}else{}" completionHandler:^(id whatIsThis,NSError *err){}];
     //move right a little bit
     [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell:eq(1)').css('padding-right', '0px !important');" completionHandler:^(id whatIsThis,NSError *err){}];
     
     // ehhh header get fixed because it's now a titlebar
     [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('position', 'fixed').css('z-index', '9').css('width', '100%');" completionHandler:^(id whatIsThis,NSError *err){}];
     
-    // make titlebar blur, but buggy. comment out.
-    //    [self evaluateJavaScript:@"$('.project-header.border-bottom.clearfix').css('backdrop-filter', 'blur(10px)').css('background-color', 'rgba(0, 0, 0, 0.5)');" completionHandler:^(id whatIsThis,NSError *err){}];
-    
     // fill cards space
     [self evaluateJavaScript:@"$('.project-columns.d-flex.flex-column.pt-3.pl-5.clearfix.position-relative').css('cssText', 'background-color: rgba(0, 0, 0, 0);margin-top: 50px;padding-left: 0px !important;top: 20px !important;');" completionHandler:^(id whatIsThis,NSError *err){}];
     [self evaluateJavaScript:@"$('.project-columns-container.d-flex.flex-row.pb-3.position-relative.js-project-columns-container.js-socket-channel.js-project-columns-drag-container').css('cssText', 'padding-left: 16px !important;');" completionHandler:^(id whatIsThis,NSError *err){}];
+    
 }
 - (void)toggleBoardMenu
 {
@@ -187,6 +189,9 @@
     if ([message.name isEqualToString:@"switchBoard"])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_SWITCH_BOARD" object:nil];
+    }else if ([message.name isEqualToString:@"openSettings"])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_OPEN_SETTINGS" object:nil];
     }
 }
 
