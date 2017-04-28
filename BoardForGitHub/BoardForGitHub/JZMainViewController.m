@@ -93,11 +93,12 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     NSString *urlString = navigationAction.request.URL.absoluteString;
-//    NSLog(@"URL String %@",urlString);
+    NSLog(@"URL String %@",urlString);
     NSError *error;
-    NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:@"https://github.com/([-\\w\\.]+)/([-\\w\\.]+)/projects/([-\\w\\.]+)" options:0 error:&error];
     
+    NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:@"https://github.com/([-\\w\\.]+)/([-\\w\\.]+)/projects/([-\\w\\.]+)" options:0 error:&error];
     NSArray *arrayOfAllMatches = [reg matchesInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
+    
     if (arrayOfAllMatches.count > 0)
     {
         
@@ -112,7 +113,7 @@
             decisionHandler (WKNavigationActionPolicyAllow);
             
             NSUserNotification *notification = [[NSUserNotification alloc] init];
-            notification.title = @"Opeing Board";
+            notification.title = @"Opening Board";
             notification.subtitle = @"Full Link URL Below";
             notification.informativeText = urlString;
             notification.soundName = NSUserNotificationDefaultSoundName;
