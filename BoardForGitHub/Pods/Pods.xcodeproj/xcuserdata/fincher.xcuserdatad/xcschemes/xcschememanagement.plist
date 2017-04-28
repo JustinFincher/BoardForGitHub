@@ -4,17 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MASShortcut-MASShortcut.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MASShortcut.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-BoardForGitHub.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>CF9E8D812212E190AD5EB88DF6BB830D</key>
+		<key>21E49887F9334B84548BFF0BA2C69086</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E029AB0CA275443A2AF3531E33683AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9E257CC97E731BC2E0D88379517DB326</key>
 		<dict>
 			<key>primary</key>
 			<true/>

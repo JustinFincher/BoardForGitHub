@@ -70,6 +70,12 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^
                            {
+                               NSUserNotification *notification = [[NSUserNotification alloc] init];
+                               notification.title = @"No Internet Connection";
+                               notification.informativeText = @"Without Internet Connection, Board For GitHub won't work.";
+                               notification.soundName = NSUserNotificationDefaultSoundName;
+                               [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                               
                                NSAlert *alert = [[NSAlert alloc] init];
                                [alert addButtonWithTitle:@"Reload"];
                                [alert addButtonWithTitle:@"Close Board"];

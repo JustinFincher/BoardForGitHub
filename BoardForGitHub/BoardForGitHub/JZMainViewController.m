@@ -78,6 +78,12 @@
                  bool isInProcess = ([self.webView.URL.absoluteString isEqualToString:@"https://github.com/login"] || [self.webView.URL.absoluteString isEqualToString:@"https://github.com/session"] || [self.webView.URL.absoluteString isEqualToString:@"https://github.com/sessions/two-factor"]);
                  if (!isInProcess)
                  {
+                     NSUserNotification *notification = [[NSUserNotification alloc] init];
+                     notification.title = @"Please Login";
+                     notification.informativeText = @"Login GitHub to use Board for GitHub";
+                     notification.soundName = NSUserNotificationDefaultSoundName;
+                     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+
                      [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/login"]]];
                  }
              }
@@ -104,6 +110,15 @@
         }else
         {
             decisionHandler (WKNavigationActionPolicyAllow);
+            
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            notification.title = @"Opeing Board";
+            notification.subtitle = @"Full Link URL Below";
+            notification.informativeText = urlString;
+            notification.soundName = NSUserNotificationDefaultSoundName;
+            [notification setHasActionButton: YES];
+            [notification setActionButtonTitle: @"Copy Link"];
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         }
     }else if ([urlString isEqualToString:@"https://github.com/login"] || [urlString isEqualToString:@"https://github.com/session"] || [urlString isEqualToString:@"https://github.com/sessions/two-factor"])
     {
@@ -198,6 +213,12 @@
     NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
     NSURL *url = [NSURL URLWithString:pboardString];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"Setting as current board";
+    notification.informativeText = [NSString stringWithFormat:@"%@",pboardString];
+    notification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 @end

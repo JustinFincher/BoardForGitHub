@@ -10,6 +10,8 @@
 		0D5901B81DEC980800E6C230 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5901B71DEC980800E6C230 /* WebKit.framework */; };
 		0D5901BB1DEC983B00E6C230 /* JZWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5901BA1DEC983B00E6C230 /* JZWebView.m */; };
 		0D5901BD1DECA6E500E6C230 /* jquery-3.1.1.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */; };
+		0D90DA901EB3A08200A3DC77 /* JZSettingsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D90DA8F1EB3A08200A3DC77 /* JZSettingsWindow.m */; };
+		0D90DA931EB3A09C00A3DC77 /* JZSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D90DA921EB3A09C00A3DC77 /* JZSettingsWindowController.m */; };
 		0D98E2731DEC8A0800F130E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2721DEC8A0800F130E2 /* AppDelegate.m */; };
 		0D98E2761DEC8A0800F130E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2751DEC8A0800F130E2 /* main.m */; };
 		0D98E27B1DEC8A0800F130E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D98E27A1DEC8A0800F130E2 /* Assets.xcassets */; };
@@ -43,6 +45,10 @@
 		0D5901B91DEC983B00E6C230 /* JZWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZWebView.h; sourceTree = "<group>"; };
 		0D5901BA1DEC983B00E6C230 /* JZWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZWebView.m; sourceTree = "<group>"; };
 		0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-3.1.1.min.js"; sourceTree = "<group>"; };
+		0D90DA8E1EB3A08200A3DC77 /* JZSettingsWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSettingsWindow.h; sourceTree = "<group>"; };
+		0D90DA8F1EB3A08200A3DC77 /* JZSettingsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSettingsWindow.m; sourceTree = "<group>"; };
+		0D90DA911EB3A09C00A3DC77 /* JZSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSettingsWindowController.h; sourceTree = "<group>"; };
+		0D90DA921EB3A09C00A3DC77 /* JZSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSettingsWindowController.m; sourceTree = "<group>"; };
 		0D98E26E1DEC8A0800F130E2 /* BoardForGitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoardForGitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D98E2711DEC8A0800F130E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0D98E2721DEC8A0800F130E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -90,6 +96,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0D90DA8D1EB3A06800A3DC77 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				0D98E2881DEC8CD900F130E2 /* JZMainWindow.h */,
+				0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */,
+				0D90DA8E1EB3A08200A3DC77 /* JZSettingsWindow.h */,
+				0D90DA8F1EB3A08200A3DC77 /* JZSettingsWindow.m */,
+			);
+			name = Window;
+			sourceTree = "<group>";
+		};
 		0D98E2651DEC8A0800F130E2 = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +131,8 @@
 				0D3AB8411E8EC55D00629B9C /* BoardForGitHub.entitlements */,
 				0D98E2711DEC8A0800F130E2 /* AppDelegate.h */,
 				0D98E2721DEC8A0800F130E2 /* AppDelegate.m */,
-				0D98E2881DEC8CD900F130E2 /* JZMainWindow.h */,
-				0D98E2891DEC8CD900F130E2 /* JZMainWindow.m */,
 				0DD295CA1EAE131000CC5A41 /* Data */,
+				0D90DA8D1EB3A06800A3DC77 /* Window */,
 				0DD101F31EA5F7FB003DB52C /* Controller */,
 				0DD295CD1EAE13A800CC5A41 /* View */,
 				0DD295D21EAE370200CC5A41 /* Web */,
@@ -143,6 +159,8 @@
 				0D98E28C1DEC8D5100F130E2 /* JZWindowController.m */,
 				0D98E2851DEC8CC400F130E2 /* JZMainViewController.h */,
 				0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */,
+				0D90DA911EB3A09C00A3DC77 /* JZSettingsWindowController.h */,
+				0D90DA921EB3A09C00A3DC77 /* JZSettingsWindowController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -359,6 +377,8 @@
 			files = (
 				0D98E2871DEC8CC400F130E2 /* JZMainViewController.m in Sources */,
 				0D98E2761DEC8A0800F130E2 /* main.m in Sources */,
+				0D90DA901EB3A08200A3DC77 /* JZSettingsWindow.m in Sources */,
+				0D90DA931EB3A09C00A3DC77 /* JZSettingsWindowController.m in Sources */,
 				0D98E28A1DEC8CD900F130E2 /* JZMainWindow.m in Sources */,
 				0DD295C91EAE130D00CC5A41 /* JZReachability.m in Sources */,
 				0D98E28D1DEC8D5100F130E2 /* JZWindowController.m in Sources */,

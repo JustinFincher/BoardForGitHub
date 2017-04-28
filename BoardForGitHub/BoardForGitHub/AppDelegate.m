@@ -9,12 +9,14 @@
 #import "AppDelegate.h"
 #import "JZMainWindow.h"
 #import "JZMainViewController.h"
+#import "JZSettingsWindowController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 @import WebKit;
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<NSUserNotificationCenterDelegate>
+@property (strong,nonatomic) JZMainWindow *mainWindow;
+@property (strong,nonatomic) JZSettingsWindowController *settingsWindowController;
 @end
 
 @implementation AppDelegate
@@ -24,9 +26,18 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"NSApplicationCrashOnExceptions": @YES }];
     [Fabric with:@[[Crashlytics class]]];
     
-    JZMainWindow *window = (JZMainWindow *)[[NSApplication sharedApplication] mainWindow];
-    JZMainViewController *controller = (JZMainViewController *)window.contentViewController;
+    self.mainWindow = (JZMainWindow *)[[NSApplication sharedApplication] mainWindow];
+    JZMainViewController *controller = (JZMainViewController *)self.mainWindow.contentViewController;
     [NSApp setServicesProvider:controller];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JZ_OPEN_SETTINGS:) name:@"JZ_OPEN_SETTINGS" object:nil];
+     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+}
+- (void)JZ_OPEN_SETTINGS:(NSNotification *)notif
+{
+    NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.settingsWindowController = [storyBoard instantiateControllerWithIdentifier:@"JZSettingsWindowController"];
+    [self.settingsWindowController.window makeKeyAndOrderFront:self];
 }
 #pragma mark - Menus Buttons
 - (IBAction)reloadBoardButtonPressed:(id)sender
@@ -78,5 +89,27 @@
            openFile:(NSString *)filename
 {
     return YES;
+}
+
+
+#pragma mark - NSUserNotificationCenterDelegate
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
+     shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
+}
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
+{
+    switch (notification.activationType)
+    {
+        case NSUserNotificationActivationTypeActionButtonClicked:
+        {
+            [[NSPasteboard generalPasteboard] clearContents];
+            [[NSPasteboard generalPasteboard] setString:notification.informativeText forType:NSStringPboardType];
+        }
+            break;
+        default:
+            break;
+    }
 }
 @end
