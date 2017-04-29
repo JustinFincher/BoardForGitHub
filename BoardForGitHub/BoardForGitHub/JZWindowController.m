@@ -10,9 +10,6 @@
 #import "JZMainViewController.h"
 
 @interface JZWindowController ()<NSWindowDelegate>
-
-
-
 @end
 
 @implementation JZWindowController

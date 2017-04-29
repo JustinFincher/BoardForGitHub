@@ -8,6 +8,7 @@
 
 #import "JZWebView.h"
 #import "JZReachability.h"
+#import "JZHeader.h"
 
 @interface JZWebView ()<WKScriptMessageHandler>
 
@@ -20,6 +21,7 @@
 @end
 
 @implementation JZWebView
+
 
 - (id)init
 {
@@ -72,26 +74,27 @@
                            {
                                NSUserNotification *notification = [[NSUserNotification alloc] init];
                                notification.title = @"No Internet Connection";
-                               notification.informativeText = @"Without Internet Connection, Board For GitHub won't work.";
+                               notification.subtitle = @"Without Internet Connection, Board For GitHub won't work.";
+                               notification.informativeText = @"When network is available, Board for GitHub will refresh automatically.";
                                notification.soundName = NSUserNotificationDefaultSoundName;
                                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-                               
-                               NSAlert *alert = [[NSAlert alloc] init];
-                               [alert addButtonWithTitle:@"Reload"];
-                               [alert addButtonWithTitle:@"Close Board"];
-                               [alert setMessageText:@"No Internet Connection"];
-                               [alert setInformativeText:@"Without Internet Connection, Board For GitHub won't work."];
-                               [alert setAlertStyle:NSWarningAlertStyle];
-                               
-                               [[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-                               NSModalResponse response = [alert runModal];
-                               if (response == NSAlertFirstButtonReturn)
-                               {
-                                   [weakSelf reload];
-                               }else
-                               {
-                                   [NSApp terminate:weakSelf];
-                               }
+//                               
+//                               NSAlert *alert = [[NSAlert alloc] init];
+//                               [alert addButtonWithTitle:@"Reload"];
+//                               [alert addButtonWithTitle:@"Close Board"];
+//                               [alert setMessageText:@"No Internet Connection"];
+//                               [alert setInformativeText:@"Without Internet Connection, Board For GitHub won't work."];
+//                               [alert setAlertStyle:NSWarningAlertStyle];
+//                               
+//                               [[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+//                               NSModalResponse response = [alert runModal];
+//                               if (response == NSAlertFirstButtonReturn)
+//                               {
+//                                   [weakSelf reload];
+//                               }else
+//                               {
+//                                   [NSApp terminate:weakSelf];
+//                               }
                            });
             
         };
@@ -138,8 +141,10 @@
     // menus move down 50px
     [self evaluateJavaScript:@"$('.project-pane').css('margin-top', '50px');" completionHandler:^(id whatIsThis,NSError *err){}];
     
-    [self evaluateJavaScript:@"$(document.body).css('background-color', 'transparent');" completionHandler:^(id whatIsThis,NSError *err){}];
-    
+    if (([[NSUserDefaults standardUserDefaults] boolForKey:NSStringFromJZUserDefaultsType(JZ_USER_DEFAULTS_VIBRANCY_BACKGROUND)] == YES))
+    {
+        [self evaluateJavaScript:@"$(document.body).css('background-color', 'transparent');" completionHandler:^(id whatIsThis,NSError *err){}];
+    }
     // octocat logo move right (windows buttons here)
     [self evaluateJavaScript:@"$('.header-logo-invertocat').css('margin-left', '50px');" completionHandler:^(id whatIsThis,NSError *err){}];
     
@@ -149,7 +154,7 @@
     // remove "quit full screen" button
     [self evaluateJavaScript:@"if ($('.d-table.mt-1.float-right').children().length == 4){$('.d-table.mt-1.float-right > .d-table-cell:eq(2)').remove();}else{}" completionHandler:^(id whatIsThis,NSError *err){}];
     // set "settings" button to be perferences
-    [self evaluateJavaScript:@"if ($('.d-table.mt-1.float-right').children().length == 3){$('.d-table.mt-1.float-right > .d-table-cell:eq(2) > a').attr('href', '#settings').off('click').click(function(){window.webkit.messageHandlers.openSettings.postMessage('open');});}else{}" completionHandler:^(id whatIsThis,NSError *err){}];
+    [self evaluateJavaScript:@"if ($('.d-table.mt-1.float-right').children().length == 3){$('.d-table.mt-1.float-right > .d-table-cell:eq(2) > a').attr('href', 'javascript:void(0)').off('click').click(function(){window.webkit.messageHandlers.openSettings.postMessage('open');});}else{}" completionHandler:^(id whatIsThis,NSError *err){}];
     //move right a little bit
     [self evaluateJavaScript:@"$('.d-table.mt-1.float-right > .d-table-cell:eq(1)').css('padding-right', '0px !important');" completionHandler:^(id whatIsThis,NSError *err){}];
     
@@ -189,15 +194,17 @@
      }];
 }
 
+
+
 #pragma mark - WKScriptMessageHandler
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
     if ([message.name isEqualToString:@"switchBoard"])
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_SWITCH_BOARD" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSStringFromJZNotificationType(JZ_NOTIFICATON_TYPE_SWITCH_BOARD) object:nil];
     }else if ([message.name isEqualToString:@"openSettings"])
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"JZ_OPEN_SETTINGS" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSStringFromJZNotificationType(JZ_NOTIFICATON_TYPE_OPEN_SETTINGS) object:nil];
     }
 }
 

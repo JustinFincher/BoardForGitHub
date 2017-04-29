@@ -12,6 +12,8 @@
 		0D5901BD1DECA6E500E6C230 /* jquery-3.1.1.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0D5901BC1DECA6E500E6C230 /* jquery-3.1.1.min.js */; };
 		0D90DA901EB3A08200A3DC77 /* JZSettingsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D90DA8F1EB3A08200A3DC77 /* JZSettingsWindow.m */; };
 		0D90DA931EB3A09C00A3DC77 /* JZSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D90DA921EB3A09C00A3DC77 /* JZSettingsWindowController.m */; };
+		0D90DA961EB4583200A3DC77 /* JZSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D90DA951EB4583200A3DC77 /* JZSettingsViewController.m */; };
+		0D90DA9F1EB464EE00A3DC77 /* JZHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D90DA9E1EB464EE00A3DC77 /* JZHeader.m */; };
 		0D98E2731DEC8A0800F130E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2721DEC8A0800F130E2 /* AppDelegate.m */; };
 		0D98E2761DEC8A0800F130E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E2751DEC8A0800F130E2 /* main.m */; };
 		0D98E27B1DEC8A0800F130E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D98E27A1DEC8A0800F130E2 /* Assets.xcassets */; };
@@ -49,6 +51,10 @@
 		0D90DA8F1EB3A08200A3DC77 /* JZSettingsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSettingsWindow.m; sourceTree = "<group>"; };
 		0D90DA911EB3A09C00A3DC77 /* JZSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSettingsWindowController.h; sourceTree = "<group>"; };
 		0D90DA921EB3A09C00A3DC77 /* JZSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSettingsWindowController.m; sourceTree = "<group>"; };
+		0D90DA941EB4583100A3DC77 /* JZSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSettingsViewController.h; sourceTree = "<group>"; };
+		0D90DA951EB4583200A3DC77 /* JZSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSettingsViewController.m; sourceTree = "<group>"; };
+		0D90DA971EB4593900A3DC77 /* JZHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JZHeader.h; sourceTree = "<group>"; };
+		0D90DA9E1EB464EE00A3DC77 /* JZHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZHeader.m; sourceTree = "<group>"; };
 		0D98E26E1DEC8A0800F130E2 /* BoardForGitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoardForGitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D98E2711DEC8A0800F130E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0D98E2721DEC8A0800F130E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -129,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				0D3AB8411E8EC55D00629B9C /* BoardForGitHub.entitlements */,
+				0D90DA971EB4593900A3DC77 /* JZHeader.h */,
+				0D90DA9E1EB464EE00A3DC77 /* JZHeader.m */,
 				0D98E2711DEC8A0800F130E2 /* AppDelegate.h */,
 				0D98E2721DEC8A0800F130E2 /* AppDelegate.m */,
 				0DD295CA1EAE131000CC5A41 /* Data */,
@@ -161,6 +169,8 @@
 				0D98E2861DEC8CC400F130E2 /* JZMainViewController.m */,
 				0D90DA911EB3A09C00A3DC77 /* JZSettingsWindowController.h */,
 				0D90DA921EB3A09C00A3DC77 /* JZSettingsWindowController.m */,
+				0D90DA941EB4583100A3DC77 /* JZSettingsViewController.h */,
+				0D90DA951EB4583200A3DC77 /* JZSettingsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -376,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D98E2871DEC8CC400F130E2 /* JZMainViewController.m in Sources */,
+				0D90DA961EB4583200A3DC77 /* JZSettingsViewController.m in Sources */,
 				0D98E2761DEC8A0800F130E2 /* main.m in Sources */,
 				0D90DA901EB3A08200A3DC77 /* JZSettingsWindow.m in Sources */,
 				0D90DA931EB3A09C00A3DC77 /* JZSettingsWindowController.m in Sources */,
@@ -383,6 +394,7 @@
 				0DD295C91EAE130D00CC5A41 /* JZReachability.m in Sources */,
 				0D98E28D1DEC8D5100F130E2 /* JZWindowController.m in Sources */,
 				0D98E2731DEC8A0800F130E2 /* AppDelegate.m in Sources */,
+				0D90DA9F1EB464EE00A3DC77 /* JZHeader.m in Sources */,
 				0D5901BB1DEC983B00E6C230 /* JZWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
