@@ -10,9 +10,6 @@
 #import "JZMainViewController.h"
 
 @interface JZWindowController ()<NSWindowDelegate>
-
-
-
 @end
 
 @implementation JZWindowController
@@ -24,12 +21,6 @@
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.titlebarAppearsTransparent = YES;
     self.window.styleMask |= NSFullSizeContentViewWindowMask;
-//    self.window.acceptsMouseMovedEvents = YES;
-//    self.window.movableByWindowBackground = true;
-//    self.window.titlebarAppearsTransparent = YES;
-//    self.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
-//    self.window.styleMask |= NSWindowStyleMaskResizable;
-//    self.window.styleMask |= NSBorderlessWindowMask;
     
     [self updateWindowButtons];
 }

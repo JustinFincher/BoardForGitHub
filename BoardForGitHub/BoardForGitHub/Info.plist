@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.8</string>
+	<string>1.0.11</string>
 	<key>CFBundleVersion</key>
-	<string>191</string>
+	<string>290</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -72,5 +72,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>alert</string>
 </dict>
 </plist>

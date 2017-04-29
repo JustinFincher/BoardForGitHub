@@ -6,6 +6,7 @@ target 'BoardForGitHub' do
   # use_frameworks!
 
   # Pods for BoardForGitHub
+    pod 'MASShortcut'
   pod 'Fabric'
 pod 'Crashlytics'
 
