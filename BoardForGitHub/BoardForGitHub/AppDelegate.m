@@ -10,8 +10,6 @@
 #import "JZMainWindow.h"
 #import "JZMainViewController.h"
 #import "JZSettingsWindowController.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 #import "JZHeader.h"
 @import WebKit;
 #import <MASShortcut/Shortcut.h>
@@ -32,7 +30,7 @@
     
     // Insert code here to initialize your application
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"NSApplicationCrashOnExceptions": @YES }];
-    [Fabric with:@[[Crashlytics class]]];
+    // [Fabric with:@[[Crashlytics class]]];
     
     self.mainWindow = (JZMainWindow *)[[NSApplication sharedApplication] mainWindow];
     JZMainViewController *controller = (JZMainViewController *)self.mainWindow.contentViewController;
